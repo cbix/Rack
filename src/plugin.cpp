@@ -276,6 +276,9 @@ void init() {
 	if (settings::safeMode)
 		return;
 
+	// Load system-wide plugins
+	loadPlugins(asset::system("plugins"));
+
 	// Extract packages and load plugins
 	extractPackages(pluginsPath);
 	loadPlugins(pluginsPath);
