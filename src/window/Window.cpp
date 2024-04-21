@@ -268,6 +268,9 @@ Window::Window() {
 
 #if defined ARCH_MAC
 	glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_TRUE);
+#elif defined ARCH_LIN
+	glfwWindowHintString(GLFW_X11_CLASS_NAME, "vcvrack");
+	glfwWindowHintString(GLFW_WAYLAND_APP_ID, "vcvrack");
 #endif
 
 	// Create window
