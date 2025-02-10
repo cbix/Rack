@@ -673,7 +673,10 @@ int Window::getMods() {
 	int mods = 0;
 #if defined ARCH_LIN
 	// On Linux X11, get mods directly from X11 display, to support X11 key remapping
-	Display* display = glfwGetX11Display();
+	Display *display = NULL;
+	if (glfwGetPlatform() == GLFW_PLATFORM_X11) {
+		display = glfwGetX11Display();
+	}
 	if (display != NULL) {
 		XkbStateRec state;
 		XkbGetState(display, XkbUseCoreKbd, &state);
