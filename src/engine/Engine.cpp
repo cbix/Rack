@@ -25,7 +25,11 @@ inline void cpuPause() {
 #if defined ARCH_X64
 	_mm_pause();
 #elif defined ARCH_ARM64
+#if defined(__GNUC__) && !defined(__clang__)
+	asm volatile("yield");
+#else
 	__yield();
+#endif
 #endif
 }
 
